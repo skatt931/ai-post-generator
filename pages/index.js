@@ -9,9 +9,9 @@ export default function Home() {
   const { user } = useUser();
 
   return (
-    <div className="w-screen h-screen overflow-hidden flex justify-center items-center relative bg-gradient-to-b from-cyan-600 to-red-300">
+    <div className="relative flex h-screen w-screen items-center justify-center overflow-hidden bg-gradient-to-b from-cyan-600 to-red-300">
       {/* <Image src={HeroImage} alt="Hero" fill className="absolute" /> */}
-      <div className="flex flex-col gap-5 relative z-10 bg-gradient-to-b from-cyan-800/70 to-zinc-500/70 text-white text-center py-10 px-5 max-w-2xl rounded-xl backdrop-blur-sm">
+      <div className="relative z-10 flex max-w-2xl flex-col gap-5 rounded-xl bg-gradient-to-b from-cyan-800/70 to-zinc-500/70 py-10 px-5 text-center text-white backdrop-blur-sm">
         <Logo />
         <div className="flex flex-col gap-5">
           <p className="text-xl">

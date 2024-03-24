@@ -5,12 +5,12 @@ import React from "react";
 
 export default function Logo() {
   return (
-    <div className="text-3xl text-center">
+    <div className="text-center text-3xl">
       <Link href="/">
         <span className="mr-2 font-heading">CopyMatic</span>
         <FontAwesomeIcon
           icon={faMicrochip}
-          className="text-cyan-300 max-w-xs"
+          className="max-w-xs text-cyan-300"
         />
       </Link>
     </div>

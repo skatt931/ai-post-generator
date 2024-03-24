@@ -9,17 +9,17 @@ import Logo from "../Logo";
 export default function AppLayout({ children }) {
   const { user } = useUser();
   return (
-    <div className="h-screen max-h-screen grid grid-cols-[300px_1fr]">
-      <div className="flex flex-col text-white overflow-hidden ">
+    <div className="grid h-screen max-h-screen grid-cols-[300px_1fr]">
+      <div className="flex flex-col overflow-hidden text-white ">
         {/* Header */}
-        <div className="bg-cyan-800 px-2 py-5 flex flex-col gap-6">
+        <div className="flex flex-col gap-6 bg-cyan-800 px-2 py-5">
           <Logo />
           <Link className="btn" href="/posts/new">
             New Post
           </Link>
           <Link
             href="/token-topup"
-            className="hover:underline hover:text-gray-300 block text-center"
+            className="block text-center hover:text-gray-300 hover:underline"
           >
             <FontAwesomeIcon icon={faCoins} className="mr-2 text-yellow-500" />
             <span>0 tokens available</span>
@@ -30,7 +30,7 @@ export default function AppLayout({ children }) {
           <div>Generated posts</div>
         </div>
         {/* Footer */}
-        <div className="bg-zinc-500 px-2 py-6 border-t border-t-gray-700/70">
+        <div className="border-t border-t-gray-700/70 bg-zinc-500 px-2 py-6">
           {!!user ? (
             <div className="flex">
               <div className="basis-1/4">
