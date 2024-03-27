@@ -5,32 +5,56 @@ import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCoins } from "@fortawesome/free-solid-svg-icons";
 import Logo from "../Logo";
+import { File, FileInput } from "lucide-react";
 
-export default function AppLayout({ children }) {
+export default function AppLayout({
+  children,
+  availableTokens,
+  posts,
+  postId,
+}) {
   const { user } = useUser();
   return (
     <div className="grid h-screen max-h-screen grid-cols-[300px_1fr]">
-      <div className="flex flex-col overflow-hidden text-white ">
+      <div className=" flex h-screen max-h-screen flex-col overflow-hidden text-white ">
         {/* Header */}
-        <div className="flex flex-col gap-6 bg-cyan-800 px-2 py-5">
+        <div className="flex flex-col gap-6 bg-gray-800 px-2 py-5">
           <Logo />
-          <Link className="btn" href="/posts/new">
-            New Post
-          </Link>
+          <button className="relative p-[3px]">
+            <Link href="/posts/new">
+              <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500" />
+              <div className="group relative  rounded-[6px] bg-white px-8  py-2 text-black transition duration-200 hover:bg-transparent">
+                <FileInput className="mr-2 inline" size={16} />
+                New Post
+              </div>
+            </Link>
+          </button>
           <Link
             href="/token-topup"
             className="block text-center hover:text-gray-300 hover:underline"
           >
             <FontAwesomeIcon icon={faCoins} className="mr-2 text-yellow-500" />
-            <span>0 tokens available</span>
+            <span>{availableTokens} tokens available</span>
           </Link>
         </div>
         {/* Posts */}
-        <div className="flex-1 overflow-auto bg-gradient-to-b from-cyan-800 to-zinc-500 p-2">
-          <div>Generated posts</div>
+        <div className="flex-1 overflow-auto bg-gradient-to-b from-gray-800 to-zinc-700 p-2">
+          <div>Generated blogs:</div>
+          <div className="grid gap-2">
+            {posts.map((post) => (
+              <Link
+                key={post._id}
+                href={`/posts/${post._id}`}
+                className={`cursor-pointer p-1 hover:rounded-md hover:bg-gray-600 ${post._id === postId ? "bg-gray-600" : ""}`}
+              >
+                <File className="inline" size={16} />
+                {post.topic}
+              </Link>
+            ))}
+          </div>
         </div>
         {/* Footer */}
-        <div className="border-t border-t-gray-700/70 bg-zinc-500 px-2 py-6">
+        <div className="border-t border-t-gray-300/70 bg-zinc-700 px-2 py-6">
           {!!user ? (
             <div className="flex">
               <div className="basis-1/4">
@@ -55,7 +79,7 @@ export default function AppLayout({ children }) {
           )}
         </div>
       </div>
-      <main className="bg-gradient-to-b from-purple-200 to-purple-100">
+      <main className="overflow-scroll bg-gradient-to-b from-zinc-200 to-zinc-100">
         {children}
       </main>
     </div>

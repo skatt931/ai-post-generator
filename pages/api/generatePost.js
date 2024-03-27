@@ -103,6 +103,10 @@ export default withApiAuthRequired(async function generatePost(req, res) {
     createdAt: new Date(),
   });
 
+  console.log("Post: ", post);
+
   // Return the post content, title, and meta description
-  res.status(200).json({ post: { postContent, title, metaDescription } });
+  res.status(200).json({
+    postId: post.insertedId,
+  });
 });
