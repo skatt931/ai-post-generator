@@ -58,12 +58,6 @@ export default function Home() {
               </div>
             </Link>
           </button>
-          {/* <button className="relative w-40 p-[3px]" type="submit">
-            <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500" />
-            <div className="group relative  rounded-[6px] bg-white px-8 py-2  text-black  transition duration-200 hover:bg-transparent">
-              <Link href="/posts/new">Sign Up</Link>
-            </div>
-          </button> */}
         </div>
       </div>
     </div>
