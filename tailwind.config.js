@@ -21,7 +21,7 @@ module.exports = {
       fontFamily: {
         body: "var(--font-bungee-hailine)",
         heading: "var(--font-bungee-spice)",
-        main: "var(--font-courier-prime)",
+        main: "var(--font-nunito)",
       },
       colors: {
         border: "hsl(var(--border))",

@@ -19,35 +19,26 @@ export default async function addTokens(req, res) {
     process.env.NODE_ENV === "production" ? "https://" : "http://";
   const host = req.headers.host;
   const origin = protocol + host;
-  console.log("origin: ", origin);
 
   const checkoutSession = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     line_items: lineItems,
     mode: "payment",
     success_url: `${origin}/success`,
+    payment_intent_data: {
+      // Metadata should be placed in both places to ensure it is passed to the webhook
+      metadata: {
+        sub: user.sub,
+      },
+    },
+    // Metadata should be placed in both places to ensure it is passed to the webhook
+    metadata: {
+      sub: user.sub,
+    },
     // cancel_url: `${process.env.NEXT_PUBLIC_URL}/token-topup`,
   });
 
   console.log("User", user);
-
-  const client = await clientPromise;
-  const db = client.db("CopyMatic");
-
-  const userProfile = await db.collection("users").updateOne(
-    {
-      auth0Id: user.sub,
-    },
-    {
-      $inc: {
-        availableTokens: 10,
-      },
-      $setOnInsert: {
-        auth0Id: user.sub,
-      },
-    },
-    { upsert: true },
-  );
 
   res.status(200).json({ session: checkoutSession });
 }

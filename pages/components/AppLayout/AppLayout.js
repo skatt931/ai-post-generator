@@ -2,10 +2,8 @@ import Link from "next/link";
 import React from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import Image from "next/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCoins } from "@fortawesome/free-solid-svg-icons";
 import Logo from "../Logo";
-import { File, FileInput } from "lucide-react";
+import { Coins, File, FileInput } from "lucide-react";
 
 export default function AppLayout({
   children,
@@ -33,23 +31,29 @@ export default function AppLayout({
             href="/token-topup"
             className="block text-center hover:text-gray-300 hover:underline"
           >
-            <FontAwesomeIcon icon={faCoins} className="mr-2 text-yellow-500" />
+            <Coins className="mr-2 inline text-yellow-500" />
             <span>{availableTokens} tokens available</span>
           </Link>
         </div>
         {/* Posts */}
         <div className="flex-1 overflow-auto bg-gradient-to-b from-gray-800 to-zinc-700 p-2">
           <div>Generated blogs:</div>
-          <div className="grid gap-2">
+          <div className=" mt-2 grid gap-2">
             {posts.map((post) => (
-              <Link
-                key={post._id}
-                href={`/posts/${post._id}`}
-                className={`cursor-pointer p-1 hover:rounded-md hover:bg-gray-600 ${post._id === postId ? "bg-gray-600" : ""}`}
-              >
-                <File className="inline" size={16} />
-                {post.topic}
-              </Link>
+              <>
+                <Link
+                  key={post._id}
+                  href={`/posts/${post._id}`}
+                  className={`has-tooltip  h-12 cursor-pointer truncate rounded-sm border border-red-50 p-3 hover:rounded-md hover:bg-gray-600 ${post._id === postId ? "bg-gray-600" : ""}`}
+                  type="button"
+                >
+                  <File className="mr-2 inline" size={16} />
+                  {post.topic}
+                  <span class="tooltip left-[300px] -mt-2 rounded-md bg-slate-700 p-2 text-xs">
+                    {post.topic}
+                  </span>
+                </Link>
+              </>
             ))}
           </div>
         </div>

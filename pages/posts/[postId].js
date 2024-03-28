@@ -9,11 +9,8 @@ export default function Post(props) {
   console.log("Props: ", props);
   const keywords = props.keywords.split(", ");
   return (
-    <div className="m-10">
-      <div className="my-6 rounded-sm border-l-destructive bg-slate-400 p-2">
-        Created at
-      </div>
-      <p>{props.createdAt}</p>
+    <div className="px-15 px-4 lg:px-20">
+      <p>Created at: {props.createdAt}</p>
       <div className="my-6 rounded-sm border-l-destructive bg-slate-400 p-2">
         Meta Description
       </div>

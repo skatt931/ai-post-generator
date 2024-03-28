@@ -4,6 +4,7 @@ import {
   Bungee_Spice,
   Bungee_Hairline,
   Courier_Prime,
+  Nunito,
 } from "@next/font/google";
 
 const bungeeSpice = Bungee_Spice({
@@ -18,6 +19,12 @@ const bungeeHairline = Bungee_Hairline({
   variable: "--font-bungee-hailine",
 });
 
+const nunito = Nunito({
+  weight: ["200", "300", "400", "600", "700", "800", "900"],
+  subsets: ["latin"],
+  variable: "--font-nunito",
+});
+
 const courierPrime = Courier_Prime({
   weight: ["400", "700"],
   subsets: ["latin"],
@@ -29,7 +36,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <UserProvider>
       <main
-        className={`${bungeeSpice.variable} ${bungeeHairline.variable} ${courierPrime.variable} font-main`}
+        className={`${bungeeSpice.variable} ${bungeeHairline.variable} ${nunito.variable} font-main`}
       >
         {getLayout(<Component {...pageProps} />, pageProps)}
       </main>
